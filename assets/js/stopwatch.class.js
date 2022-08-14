@@ -95,7 +95,6 @@ class StopWatch {
     this.time = { ...countdown };
     this.countdown.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.countdown.seconds = this.countdown.totalSeconds;
-    console.log(this.countdown.seconds);
     if (this.paused) {
       this.paused = false;
       this.start = Date.now();
@@ -108,7 +107,7 @@ class StopWatch {
 
   soundAlarm() {
     const audio = new Audio(
-      "http://soundfxcenter.com/video-games/street-fighter/8d82b5_Street_Fighter_Hadouken_Sound_Effect.mp3"
+      "http://soundfxcenter.com/video-games/pacman/8d82b5_Pacman_Opening_Song_Sound_Effect.mp3"
     );
     audio.play();
   }
