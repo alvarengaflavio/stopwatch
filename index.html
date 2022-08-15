@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/assets/icon/favicon.ico" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="/assets/icon/favicon.ico"
+      type="image/x-icon"
+    />
     <title>STOPWATCH</title>
     <link rel="stylesheet" href="/assets/style/app.css" />
     <script src="/assets/js/stopwatch.class.js" defer></script>
@@ -25,6 +29,46 @@
       <button id="setButton" class="timerBtn" type="button" name="setwatch">
         Set
       </button>
+    </div>
+
+    <div id="contdown-container">
+      <div id="contdown-display">
+        <form>
+          <div class="timerInput">
+            <label for="hourCount">Hours</label>
+            <input
+              type="number"
+              id="hourCount"
+              min="0"
+              max="24"
+              step="1"
+              value="0"
+            />
+          </div>
+          <div class="timerInput">
+            <label for="minuteCount">Minutes</label>
+            <input
+              type="number"
+              id="minuteCount"
+              min="0"
+              max="59"
+              step="1"
+              value="0"
+            />
+          </div>
+          <div class="timerInput">
+            <label for="secondCount">Seconds</label>
+            <input
+              type="number"
+              id="secondCount"
+              min="0"
+              max="59"
+              step="1"
+              value="0"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
