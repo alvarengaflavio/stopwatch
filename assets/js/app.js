@@ -13,6 +13,7 @@ const main = () => {
     set: setButton,
   });
 
+  initializeCountdownVariables();
   stopWatch.setButtonEvents();
 };
 main();

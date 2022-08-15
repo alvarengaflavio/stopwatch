@@ -95,12 +95,9 @@ class StopWatch {
     this.timeDisplay.textContent = "00:00:00";
   }
 
-  setCountdown(hours, minutes, seconds) {
+  setCountdown({ hours, minutes, seconds }) {
     if (this.isRunning) return;
-    const countdown = {};
-    countdown.hours = hours;
-    countdown.minutes = minutes;
-    countdown.seconds = seconds;
+    const countdown = { hours, minutes, seconds };
     this.time = { ...countdown };
     this.countdown.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.countdown.seconds = this.countdown.totalSeconds;
@@ -127,7 +124,9 @@ class StopWatch {
       this.resetTime();
     });
     this.setButton.addEventListener("click", () => {
-      this.setCountdown(0, 0, 10);
+      const setTime = Countdown.getCountDown();
+      if (!setTime) return;
+      this.setCountdown(setTime);
     });
   }
 }
