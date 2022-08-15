@@ -15,19 +15,19 @@ class StopWatch {
     this.setButton = set;
     this.timeDisplay = display;
     this.time = { hours: 0, minutes: 0, seconds: 0 };
-    this.countdown = { totalSeconds: 0, seconds: 0 };
+    this.countdown = { totalSeconds: 0, seconds: 0, tag: false };
   }
 
-  updateTime(countdown = false) {
+  updateTime() {
     this.currentTime = Date.now();
     this.epasedTime = this.currentTime - this.start;
 
-    if (!countdown) {
+    if (!this.countdown.tag) {
       this.time.hours = Math.floor(this.epasedTime / 3600000);
       this.time.minutes = Math.floor((this.epasedTime % 3600000) / 60000);
       this.time.seconds = Math.floor((this.epasedTime % 60000) / 1000);
 
-      this.displayTime(this.time.hours, this.time.minutes, this.time.seconds);
+      this.displayTime(this.time);
       return;
     }
 
@@ -42,10 +42,10 @@ class StopWatch {
     this.time.minutes = Math.floor((this.countdown.seconds % 3600) / 60);
     this.time.seconds = Math.floor(this.countdown.seconds % 60);
 
-    this.displayTime(this.time.hours, this.time.minutes, this.time.seconds);
+    this.displayTime(this.time);
   }
 
-  displayTime(hours, minutes, seconds) {
+  displayTime({ hours, minutes, seconds }) {
     function pad(number) {
       return number < 10 ? "0" + number : number;
     }
@@ -56,14 +56,16 @@ class StopWatch {
   }
 
   startTime() {
-    if (this.paused) {
-      this.paused = false;
-      this.start = Date.now() - this.epasedTime;
-      this.interval = setInterval(() => {
-        this.updateTime();
-      }, 1000);
-      this.isRunning = true;
-    }
+    if (!this.paused) return;
+
+    this.paused = false;
+    this.countdown.tag
+      ? (this.start = Date.now())
+      : (this.start = Date.now() - this.epasedTime);
+    this.interval = setInterval(() => {
+      this.updateTime();
+    }, 1000);
+    this.isRunning = true;
   }
 
   pauseTime() {
@@ -71,6 +73,10 @@ class StopWatch {
       this.paused = true;
       clearInterval(this.interval);
       this.isRunning = false;
+      /* if countdown is set, reset the total seconds to the current seconds */
+      this.countdown.tag
+        ? (this.countdown.totalSeconds = this.countdown.seconds)
+        : "";
     }
   }
 
@@ -81,6 +87,7 @@ class StopWatch {
     this.currentTime = 0;
     this.paused = true;
     this.isRunning = false;
+    this.countdown.tag = false;
     this.time.hours = 0;
     this.time.minutes = 0;
     this.time.seconds = 0;
@@ -88,6 +95,7 @@ class StopWatch {
   }
 
   setCountdown(hours, minutes, seconds) {
+    if (this.isRunning) return;
     const countdown = {};
     countdown.hours = hours;
     countdown.minutes = minutes;
@@ -95,14 +103,8 @@ class StopWatch {
     this.time = { ...countdown };
     this.countdown.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.countdown.seconds = this.countdown.totalSeconds;
-    if (this.paused) {
-      this.paused = false;
-      this.start = Date.now();
-      this.interval = setInterval(() => {
-        this.updateTime(true);
-      }, 1000);
-      this.isRunning = true;
-    }
+    this.countdown.tag = true;
+    this.displayTime(this.time);
   }
 
   soundAlarm() {
