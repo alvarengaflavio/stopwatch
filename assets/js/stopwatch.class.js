@@ -57,7 +57,7 @@ class StopWatch {
 
   startTime() {
     if (!this.paused) return;
-
+    this.startButton.innerText = "Resume";
     this.paused = false;
     this.countdown.tag
       ? (this.start = Date.now())
@@ -91,6 +91,7 @@ class StopWatch {
     this.time.hours = 0;
     this.time.minutes = 0;
     this.time.seconds = 0;
+    this.startButton.innerText = "Start";
     this.timeDisplay.textContent = "00:00:00";
   }
 
@@ -104,6 +105,7 @@ class StopWatch {
     this.countdown.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.countdown.seconds = this.countdown.totalSeconds;
     this.countdown.tag = true;
+    this.startButton.innerText = "Start";
     this.displayTime(this.time);
   }
 
