@@ -69,12 +69,12 @@ body {
 
   position: absolute;
   width: 320px;
-  height: 28px;
+  height: 26px;
   top: 5px;
   left: calc(50% - 160px);
   text-align: center;
   font-family: consolas, monospace;
-  font-size: 22px;
+  font-size: 21px;
   word-spacing: -5px;
   border-radius: 24px;
   outline: 1px solid whitesmoke;
