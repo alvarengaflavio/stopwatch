@@ -8,14 +8,23 @@ class Countdown {
     return true;
   };
 
+  static messageToast = (message) => {
+    this.setToast.innerText = message;
+    this.setToast.classList.toggle('active');
+      setTimeout(() => {
+        this.setToast.classList.toggle('active');
+      }, 3000);
+  }
+
   static getCountDown = () => {
     const hours = parseInt(this.setHour.value);
     const minutes = parseInt(this.setMinute.value);
     const seconds = parseInt(this.setSecond.value);
     if (!this.validadeCountDown({ hours, minutes, seconds })) {
-      alert("Invalid Timer values!");
+      this.messageToast("Invalid Timer Value!");
       return false;
     }
+    this.messageToast("Alarm Setted! Press Start");
     return { hours, minutes, seconds };
   };
 
@@ -49,4 +58,5 @@ function initializeCountdownVariables() {
   Countdown.setHour = document.querySelector("#hourCount");
   Countdown.setMinute = document.querySelector("#minuteCount");
   Countdown.setSecond = document.querySelector("#secondCount");
+  Countdown.setToast = document.querySelector("#msgToast");
 }
