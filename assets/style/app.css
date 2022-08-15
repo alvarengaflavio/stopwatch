@@ -54,6 +54,7 @@ body {
 }
 
 #contdown-container {
+  position: relative;
   width: 500px;
   height: 225px;
   margin: 0 auto;
@@ -63,6 +64,33 @@ body {
   background-color: #333;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
+
+#msgToast {
+
+  position: absolute;
+  width: 320px;
+  height: 28px;
+  top: 5px;
+  left: calc(50% - 160px);
+  text-align: center;
+  font-family: consolas, monospace;
+  font-size: 22px;
+  word-spacing: -5px;
+  border-radius: 24px;
+  outline: 1px solid whitesmoke;
+  color: rgb(29, 201, 29);
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  background-color: #222;
+  transform: rotateX(90deg);
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+#msgToast.active {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
 
 #contdown-display {
   font-size: 25px;
