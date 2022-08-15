@@ -45,6 +45,20 @@
               step="1"
               value="0"
             />
+            <button
+              type="button"
+              class="countdownBtnPlus timerBtn"
+              onclick="Countdown.stepUp(this.parentNode.querySelector('#hourCount'))"
+            >
+              +
+            </button>
+            <button
+              type="button"
+              class="countdownBtnMinus timerBtn"
+              onclick="Countdown.stepDown(this.parentNode.querySelector('#hourCount'))"
+            >
+              -
+            </button>
           </div>
           <div class="timerInput">
             <label for="minuteCount">Minutes</label>
@@ -56,6 +70,20 @@
               step="1"
               value="0"
             />
+            <button
+              type="button"
+              class="countdownBtnPlus timerBtn"
+              onclick="Countdown.stepUp(this.parentNode.querySelector('#minuteCount'))"
+            >
+              +
+            </button>
+            <button
+              type="button"
+              class="countdownBtnMinus timerBtn"
+              onclick="Countdown.stepDown(this.parentNode.querySelector('#minuteCount'))"
+            >
+              -
+            </button>
           </div>
           <div class="timerInput">
             <label for="secondCount">Seconds</label>
@@ -67,6 +95,20 @@
               step="1"
               value="0"
             />
+            <button
+              type="button"
+              class="countdownBtnPlus timerBtn"
+              onclick="Countdown.stepUp(this.parentNode.querySelector('#secondCount'))"
+            >
+              +
+            </button>
+            <button
+              type="button"
+              class="countdownBtnMinus timerBtn"
+              onclick="Countdown.stepDown(this.parentNode.querySelector('#secondCount'))"
+            >
+              -
+            </button>
           </div>
         </form>
       </div>

@@ -18,6 +18,31 @@ class Countdown {
     }
     return { hours, minutes, seconds };
   };
+
+  static validadeNumber = (value) => {
+    if (isNaN(value)) return false;
+    if (value < 0) return false;
+    if (value === "") return false;
+    return true;
+  };
+
+  static stepUp = (document) => {
+    const number = parseInt(document.value);
+    !this.validadeNumber(number)
+      ? (document.value = 0)
+      : number < 60
+      ? document.value++
+      : (document.value = 0);
+  };
+
+  static stepDown = (document) => {
+    const number = parseInt(document.value);
+    !this.validadeNumber(number)
+      ? (document.value = 0)
+      : number > 0
+      ? document.value--
+      : (document.value = 0);
+  };
 }
 
 function initializeCountdownVariables() {
