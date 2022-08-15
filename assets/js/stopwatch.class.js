@@ -106,11 +106,30 @@ class StopWatch {
     this.displayTime(this.time);
   }
 
+  playSoundWithDelay(audio, ms) {
+    setTimeout(() => {
+      audio.play();
+    }, ms);
+  }
+
   soundAlarm() {
-    const audio = new Audio(
-      "http://soundfxcenter.com/video-games/pacman/8d82b5_Pacman_Opening_Song_Sound_Effect.mp3"
+    const hadouken = new Audio(
+      "http://soundfxcenter.com/video-games/street-fighter/8d82b5_Street_Fighter_Hadouken_Sound_Effect.mp3"
     );
-    audio.play();
+
+    const shoryuken = new Audio(
+      "http://soundfxcenter.com/video-games/street-fighter/8d82b5_Street_Fighter_Shoryuken_Sound_Effect.mp3"
+    );
+    const tatsumaki = new Audio(
+      "http://soundfxcenter.com/video-games/street-fighter/8d82b5_Street_Fighter_Tatsumaki_Senpuu_Kyaku_Sound_Effect.mp3"
+    );
+    const soundList = [hadouken, hadouken, hadouken, tatsumaki, shoryuken];
+    soundList
+      .map((sound, index) => {
+        this.playSoundWithDelay(sound, index * 1250);
+        this.playSoundWithDelay(sound, (index + 6) * 1250);
+      });
+ 
   }
 
   setButtonEvents() {
