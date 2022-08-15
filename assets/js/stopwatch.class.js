@@ -117,9 +117,9 @@ class StopWatch {
     const pacman = new Audio(
       "http://soundfxcenter.com/video-games/pacman/8d82b5_Pacman_Opening_Song_Sound_Effect.mp3"
     );
-    const soundList = [pacman, pacman, pacman, pacman, pacman];
+    const soundList = [pacman, pacman, pacman];
     soundList.map((sound, index) => {
-      this.playSoundWithDelay(sound, index * 6000, 0.25 + index * 0.15);
+      this.playSoundWithDelay(sound, index * 6500, 0.4 + index * 0.3);
     });
   }
 
