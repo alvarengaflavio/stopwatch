@@ -57,6 +57,8 @@ class StopWatch {
 
   startTime() {
     if (!this.paused) return;
+    this.setActiveElement(this.startButton);
+    this.setNotActiveElement(this.pauseButton);
     this.startButton.innerText = "Resume";
     this.paused = false;
     this.countdown.tag
@@ -71,6 +73,8 @@ class StopWatch {
   pauseTime() {
     if (!this.paused) {
       this.paused = true;
+      this.setActiveElement(this.pauseButton);
+      this.setNotActiveElement(this.startButton);
       clearInterval(this.interval);
       this.isRunning = false;
       /* if countdown is set, reset the total seconds to the current seconds */
@@ -82,6 +86,9 @@ class StopWatch {
 
   resetTime() {
     clearInterval(this.interval);
+    this.setNotActiveElement(this.setButton);
+    this.setNotActiveElement(this.startButton);
+    this.setNotActiveElement(this.pauseButton);
     this.start = 0;
     this.epasedTime = 0;
     this.currentTime = 0;
@@ -97,13 +104,25 @@ class StopWatch {
 
   setCountdown({ hours, minutes, seconds }) {
     if (this.isRunning) return;
+    this.resetTime();
     const countdown = { hours, minutes, seconds };
     this.time = { ...countdown };
     this.countdown.totalSeconds = hours * 3600 + minutes * 60 + seconds;
     this.countdown.seconds = this.countdown.totalSeconds;
     this.countdown.tag = true;
     this.startButton.innerText = "Start";
+    this.setActiveElement(this.setButton);
     this.displayTime(this.time);
+  }
+
+  setActiveElement(element) {
+    if (element.classList.contains("active")) return;
+    element.classList.add("active");
+  }
+
+  setNotActiveElement(element) {
+    if (element.classList.contains("active"))
+      element.classList.remove("active");
   }
 
   playSoundWithDelay(audio, ms, volume) {
@@ -134,7 +153,7 @@ class StopWatch {
       this.resetTime();
     });
     this.setButton.addEventListener("click", () => {
-      const setTime = Countdown.getCountDown();
+      const setTime = Countdown.getCountDown(this.isRunning);
       if (!setTime) return;
       this.setCountdown(setTime);
     });

@@ -10,13 +10,17 @@ class Countdown {
 
   static messageToast = (message) => {
     this.setToast.innerText = message;
-    this.setToast.classList.toggle('active');
-      setTimeout(() => {
-        this.setToast.classList.toggle('active');
-      }, 3000);
-  }
+    this.setToast.classList.toggle("active");
+    setTimeout(() => {
+      this.setToast.classList.toggle("active");
+    }, 3000);
+  };
 
-  static getCountDown = () => {
+  static getCountDown = (isRunning = false) => {
+    if (isRunning) {
+      this.messageToast("Please Stop Timer...");
+      return false;
+    }
     const hours = parseInt(this.setHour.value);
     const minutes = parseInt(this.setMinute.value);
     const seconds = parseInt(this.setSecond.value);
