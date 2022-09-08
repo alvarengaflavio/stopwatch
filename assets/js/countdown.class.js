@@ -58,7 +58,6 @@ class Countdown {
   };
 
   static zeroDisplay = () => {
-    // this.messageToast("Alarm Set Reseted");
     this.setHour.value = 0;
     this.setMinute.value = 0;
     this.setSecond.value = 0;
