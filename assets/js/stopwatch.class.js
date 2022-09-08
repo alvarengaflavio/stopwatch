@@ -158,7 +158,6 @@ class StopWatch {
       if (!setTime) return;
       this.setCountdown(setTime);
     });
-
     this.zeroButton.addEventListener("click", () => {
       Countdown.zeroDisplay();
     });
