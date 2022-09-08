@@ -1,5 +1,5 @@
 class StopWatch {
-  constructor({ start, pause, reset, display, set }) {
+  constructor({ start, pause, reset, display, set, zero }) {
     this.start = 0;
     this.epasedTime = 0;
     this.currentTime = 0;
@@ -13,6 +13,7 @@ class StopWatch {
     this.pauseButton = pause;
     this.resetButton = reset;
     this.setButton = set;
+    this.zeroButton = zero;
     this.timeDisplay = display;
     this.time = { hours: 0, minutes: 0, seconds: 0 };
     this.countdown = { totalSeconds: 0, seconds: 0, tag: false };
@@ -156,6 +157,10 @@ class StopWatch {
       const setTime = Countdown.getCountDown(this.isRunning);
       if (!setTime) return;
       this.setCountdown(setTime);
+    });
+
+    this.zeroButton.addEventListener("click", () => {
+      Countdown.zeroDisplay();
     });
   }
 }

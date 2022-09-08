@@ -4,6 +4,7 @@ const main = () => {
   const pauseButton = document.querySelector("#pauseButton");
   const resetButton = document.querySelector("#resetButton");
   const setButton = document.querySelector("#setButton");
+  const zeroButton = document.querySelector("#zeroButton");
 
   const stopWatch = new StopWatch({
     start: startButton,
@@ -11,6 +12,7 @@ const main = () => {
     reset: resetButton,
     display: timeDisplay,
     set: setButton,
+    zero: zeroButton,
   });
 
   initializeCountdownVariables();
