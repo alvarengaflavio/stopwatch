@@ -32,6 +32,7 @@ body {
   color: rgb(29, 201, 29);
   font-family: consolas, monospace;
   box-shadow: 5px 7px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.8);
 }
 
 .timerBtn {
@@ -127,6 +128,7 @@ input {
   font-size: 32px;
   text-align: center;
   box-shadow: 4px 5px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
   transition: all 0.6s ease;
 }
 
@@ -162,12 +164,24 @@ input[type="number"] {
   bottom: -30px;
 }
 
-#count-buttons {
+#count-buttons,
+#time-buttons {
   position: relative;
   display: flex;
   width: 100%;
+  justify-content: space-around;
+}
+
+#time-buttons {
+  padding: 0 112px;
+}
+
+#count-buttons {
   top: 50px;
   left: 0;
-  padding: 0 150px;
-  justify-content: space-around;
+  padding: 0 156px;
+}
+
+.timerBtn.active {
+  color: rgb(29, 201, 29);
 }
