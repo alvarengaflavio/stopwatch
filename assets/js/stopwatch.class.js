@@ -6,9 +6,6 @@ class StopWatch {
     this.paused = true;
     this.interval = null;
     this.isRunning = false;
-    this.hours = 0;
-    this.minutes = 0;
-    this.seconds = 0;
     this.startButton = start;
     this.pauseButton = pause;
     this.resetButton = reset;
@@ -168,12 +165,7 @@ class StopWatch {
   /////////////////////////////// persistent clock area ///////////////////////////
   getCountDown() {
     return {
-      start: this.start,
       epasedTime: this.epasedTime,
-      currentTime: this.currentTime,
-      hours: this.hours,
-      minutes: this.minutes,
-      seconds: this.seconds,
       time: this.time,
       countdown: this.countdown,
     };
@@ -191,17 +183,12 @@ class StopWatch {
     this.displayTime(this.time);
 
     stopWatch.countdown.tag && this.setCountdown(stopWatch.time);
-    
+
     this.startTime();
   }
 
   setLocalToStopwatch(localStopWatch) {
-    this.start = localStopWatch.start;
     this.epasedTime = localStopWatch.epasedTime;
-    this.currentTime = localStopWatch.currentTime;
-    this.hours = localStopWatch.hours;
-    this.minutes = localStopWatch.minutes;
-    this.seconds = localStopWatch.seconds;
     this.time = localStopWatch.time;
     this.countdown = localStopWatch.countdown;
   }
