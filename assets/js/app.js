@@ -17,5 +17,6 @@ const main = () => {
 
   initializeCountdownVariables();
   stopWatch.setButtonEvents();
+  stopWatch.loadLocalStorage();
 };
 main();

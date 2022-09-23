@@ -22,6 +22,7 @@ class StopWatch {
   updateTime() {
     this.currentTime = Date.now();
     this.epasedTime = this.currentTime - this.start;
+    this.handleLocalStorageChange();
 
     if (!this.countdown.tag) {
       this.time.hours = Math.floor(this.epasedTime / 3600000);
@@ -67,7 +68,7 @@ class StopWatch {
       : (this.start = Date.now() - this.epasedTime);
     this.interval = setInterval(() => {
       this.updateTime();
-    }, 1000);
+    }, 100);
     this.isRunning = true;
   }
 
@@ -90,6 +91,7 @@ class StopWatch {
     this.setNotActiveElement(this.setButton);
     this.setNotActiveElement(this.startButton);
     this.setNotActiveElement(this.pauseButton);
+    this.deleteLocalStorage();
     this.start = 0;
     this.epasedTime = 0;
     this.currentTime = 0;
@@ -161,5 +163,51 @@ class StopWatch {
     this.zeroButton.addEventListener("click", () => {
       Countdown.zeroDisplay();
     });
+  }
+
+  /////////////////////////////// persistent clock area ///////////////////////////
+  getCountDown() {
+    return {
+      start: this.start,
+      epasedTime: this.epasedTime,
+      currentTime: this.currentTime,
+      isRunning: this.isRunning,
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+      time: this.time,
+      countdown: this.countdown,
+    };
+  }
+
+  handleLocalStorageChange() {
+    localStorage.setItem("alvaStopwatch", JSON.stringify(this.getCountDown()));
+  }
+
+  loadLocalStorage() {
+    const stopWatchLocal = localStorage.getItem("alvaStopwatch");
+    if (!stopWatchLocal) return;
+    const stopWatch = JSON.parse(stopWatchLocal);
+    this.setLocalToStopwatch(stopWatch);
+    this.displayTime(this.time);
+
+    if (stopWatch.countdown.tag) this.setCountdown(stopWatch.time);
+    this.startTime();
+  }
+
+  setLocalToStopwatch(localStopWatch) {
+    this.start = localStopWatch.start;
+    this.epasedTime = localStopWatch.epasedTime;
+    this.currentTime = localStopWatch.currentTime;
+    this.isRunning = false;
+    this.hours = localStopWatch.hours;
+    this.minutes = localStopWatch.minutes;
+    this.seconds = localStopWatch.seconds;
+    this.time = localStopWatch.time;
+    this.countdown = localStopWatch.countdown;
+  }
+
+  deleteLocalStorage() {
+    localStorage.removeItem("alvaStopwatch");
   }
 }
