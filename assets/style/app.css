@@ -186,3 +186,8 @@ input[type="number"] {
 .timerBtn.active {
   color: rgb(29, 201, 29);
 }
+
+::selection {
+  background-color: rgb(13, 98, 13);
+  color: white;
+}

@@ -171,7 +171,6 @@ class StopWatch {
       start: this.start,
       epasedTime: this.epasedTime,
       currentTime: this.currentTime,
-      isRunning: this.isRunning,
       hours: this.hours,
       minutes: this.minutes,
       seconds: this.seconds,
@@ -191,7 +190,8 @@ class StopWatch {
     this.setLocalToStopwatch(stopWatch);
     this.displayTime(this.time);
 
-    if (stopWatch.countdown.tag) this.setCountdown(stopWatch.time);
+    stopWatch.countdown.tag && this.setCountdown(stopWatch.time);
+    
     this.startTime();
   }
 
@@ -199,7 +199,6 @@ class StopWatch {
     this.start = localStopWatch.start;
     this.epasedTime = localStopWatch.epasedTime;
     this.currentTime = localStopWatch.currentTime;
-    this.isRunning = false;
     this.hours = localStopWatch.hours;
     this.minutes = localStopWatch.minutes;
     this.seconds = localStopWatch.seconds;
